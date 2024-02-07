@@ -27,7 +27,7 @@ As funcionalidades implementadas de acordo com a regra de negócio são:
 
 Aqui está uma lista de tarefas pendentes para melhorar o projeto:
 
-- [ ] Implementar a funcionalidade `onOpen` no código para execução automática ao abrir a planilha.
+- [x] Implementar a funcionalidade `onOpen` no código para execução automática ao abrir a planilha.
 - [ ] Garantir que todos os textos no código fonte (atributos, classes, funções, comentários, etc.) estejam escritos em inglês.
 - [ ] Criar e executar testes para garantir a qualidade do código.
 - [ ] Refatorar o código para melhorar sua estrutura, legibilidade e eficiência.

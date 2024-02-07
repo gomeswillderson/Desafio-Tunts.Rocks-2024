@@ -1,3 +1,7 @@
+function onOpen() {
+  calcularSituacao();
+}
+
 function calcularSituacao() {
   var planilha = SpreadsheetApp.getActiveSpreadsheet();
   var aba = planilha.getActiveSheet();

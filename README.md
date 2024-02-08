@@ -27,7 +27,7 @@ Aqui está uma lista de tarefas pendentes para melhorar o projeto:
 - [x] Implementar a funcionalidade `onOpen` no código para execução automática ao abrir a planilha.
 - [x] Garantir que todos os textos no código fonte (atributos, classes, funções, comentários, etc.) estejam escritos em inglês.
     - *Exceção*: identificadores e textos pré-definidos neste desafio.
-- [x] Modificar o código para que ele determine dinamicamente o intervalo de células que contém os dados dos alunos
+- [x] Modificar o código para que ele determine dinamicamente o intervalo de células que contém os dados dos alunos.
     - Dessa forma, agora o código suporta a adição de novos alunos na tabela.
 - [ ] Criar e executar testes para garantir a qualidade do código.
 - [ ] Refatorar o código para melhorar sua estrutura, legibilidade e eficiência.

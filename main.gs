@@ -1,46 +1,46 @@
 function onOpen() {
-  calcularSituacao();
+  calculateStatus();
 }
 
-function calcularSituacao() {
-  var planilha = SpreadsheetApp.getActiveSpreadsheet();
-  var aba = planilha.getActiveSheet();
+function calculateStatus() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getActiveSheet();
   
-  var matriculas = aba.getRange("A4:A27").getValues();
-  var nomes = aba.getRange("B4:B27").getValues();
-  var faltas = aba.getRange("C4:C27").getValues();
-  var p1 = aba.getRange("D4:D27").getValues();
-  var p2 = aba.getRange("E4:E27").getValues();
-  var p3 = aba.getRange("F4:F27").getValues();
-  var situacoes = [];
-  var notasFinais = [];
+  var enrollments = sheet.getRange("A4:A27").getValues();
+  var names = sheet.getRange("B4:B27").getValues();
+  var absences = sheet.getRange("C4:C27").getValues();
+  var p1 = sheet.getRange("D4:D27").getValues();
+  var p2 = sheet.getRange("E4:E27").getValues();
+  var p3 = sheet.getRange("F4:F27").getValues();
+  var statuses = [];
+  var finalGrades = [];
   
-  for (var i = 0; i < matriculas.length; i++) {
-    var media = ((p1[i][0] + p2[i][0] + p3[i][0]) / 3)
-    var totalAulas = 90; // número total de aulas
-    var faltasPercentual = faltas[i][0] / totalAulas; // Calcula a porcentagem de faltas
-    var situacao = "";
-    var notaFinal = 0;
+  for (var i = 0; i < enrollments.length; i++) {
+    var average = ((p1[i][0] + p2[i][0] + p3[i][0]) / 3)
+    var totalClasses = 90; // total number of classes
+    var absencePercentage = absences[i][0] / totalClasses; // Calculate absence percentage
+    var status = "";
+    var finalGrade = 0;
     
-    if (faltasPercentual > 0.25) {
-      situacao = "Reprovado por Falta";
+    if (absencePercentage > 0.25) {
+      status = "Reprovado por Falta";
     } else {
-      if (media < 50) { 
-        situacao = "Reprovado por Nota";
-      } else if (media >= 50 && media < 70) { // Média mínima ajustada para 50, e média máxima ajustada para 70
-        situacao = "Exame Final";
-        notaFinal = Math.ceil(Math.max(0, 100 - media)); // Calcula a nota para aprovação final e arredonda para o próximo número inteiro
+      if (average < 50) { 
+        status = "Reprovado por Nota";
+      } else if (average >= 50 && average < 70) { // Adjusted minimum average to 50, and maximum average to 70
+        status = "Exame Final";
+        finalGrade = Math.ceil(Math.max(0, 100 - average)); // Calculate grade for final approval and round up to the next integer
       } else {
-        situacao = "Aprovado";
+        status = "Aprovado";
       }
     }
     
-    situacoes.push([situacao]);
-    notasFinais.push([situacao === "Exame Final" ? Math.ceil(notaFinal) : ""]); // Arredonda para o próximo número inteiro
+    statuses.push([status]);
+    finalGrades.push([status === "Exame Final" ? Math.ceil(finalGrade) : ""]); // Round up to the next integer
     
-    Logger.log("Aluno: " + nomes[i][0] + ", Média: " + media + ", Situação: " + situacao + ", Nota para Aprovação Final: " + notaFinal);
+    Logger.log("Student: " + names[i][0] + ", Average: " + average + ", Status: " + status + ", Grade for Final Approval: " + finalGrade);
   }
   
-  aba.getRange("G4:G27").setValues(situacoes);
-  aba.getRange("H4:H27").setValues(notasFinais);
+  sheet.getRange("G4:G27").setValues(statuses);
+  sheet.getRange("H4:H27").setValues(finalGrades);
 }
